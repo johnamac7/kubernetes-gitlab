@@ -7,17 +7,17 @@ metadata:
     name: gitlab
 spec:
   rules:
-  - host: git.example.com
+  - host: gitlab.jnpr.belfast
     http:
       paths:
       - path: /
         backend:
-          serviceName: gitlab
+          serviceName: gitlab-nodeport
           servicePort: 80
-  - host: git-ssh.example.com
+  - host: gitlab.jnpr.belfast
     http:
       paths:
       - path: /
         backend:
-          serviceName: gitlab
-          servicePort: 1022
+          serviceName: gitlab-nodeport
+          servicePort: 22

@@ -1,17 +1,21 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: nginx-ingress-lb
+  namespace: gitlab
 spec:
+  selector:
+    matchLabels:
+      app: nginx-ingress-lb
   template:
     metadata:
       labels:
-        name: nginx-ingress-lb
+        app: nginx-ingress-lb
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-      - image: gcr.io/google_containers/nginx-ingress-controller:0.8.3
-        name: nginx-ingress-lb
+      - name: nginx-ingress-lb
+        image: gcr.io/google_containers/nginx-ingress-controller:0.8.3
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
